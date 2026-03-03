@@ -1,0 +1,245 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Self-hosted Typefaces ──────────────────────────────────────────────────── */
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/assets/fonts/Fraunces.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Crimson Pro';
+  src: url('/assets/fonts/CrimsonPro.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* ── Deep vintage sepia palette (OKLCH L C H) ── */
+    --background:        0.92 0.022 68;      /* aged parchment */
+    --foreground:        0.18 0.028 50;      /* very dark sepia */
+
+    --card:              0.96 0.016 72;      /* antique ivory */
+    --card-foreground:   0.18 0.028 50;
+
+    --popover:           0.96 0.016 72;
+    --popover-foreground: 0.18 0.028 50;
+
+    --primary:           0.50 0.10 28;      /* dusty rose / terra cotta */
+    --primary-foreground: 0.97 0.008 70;
+
+    --secondary:         0.87 0.040 72;     /* warm antique sand */
+    --secondary-foreground: 0.26 0.030 55;
+
+    --muted:             0.90 0.022 68;     /* muted parchment */
+    --muted-foreground:  0.50 0.035 60;
+
+    --accent:            0.72 0.065 148;    /* sage green */
+    --accent-foreground: 0.18 0.040 148;
+
+    --destructive:       0.52 0.18 22;
+    --destructive-foreground: 0.97 0 0;
+
+    --border:            0.82 0.032 65;     /* aged sepia border */
+    --input:             0.85 0.025 68;
+    --ring:              0.50 0.10 28;
+
+    --chart-1: 0.50 0.10 28;
+    --chart-2: 0.65 0.07 148;
+    --chart-3: 0.72 0.06 75;
+    --chart-4: 0.60 0.08 50;
+    --chart-5: 0.68 0.08 30;
+
+    --sidebar: 0.92 0.022 68;
+    --sidebar-foreground: 0.18 0.028 50;
+    --sidebar-primary: 0.50 0.10 28;
+    --sidebar-primary-foreground: 0.97 0.008 70;
+    --sidebar-accent: 0.87 0.040 72;
+    --sidebar-accent-foreground: 0.26 0.030 55;
+    --sidebar-border: 0.82 0.032 65;
+    --sidebar-ring: 0.50 0.10 28;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Crimson Pro', 'Georgia', serif;
+    font-size: 1.075rem;
+    line-height: 1.75;
+    /* Vignette effect */
+    background-image: radial-gradient(
+      ellipse at 50% 0%,
+      transparent 60%,
+      oklch(0.82 0.030 62 / 0.35) 100%
+    );
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', 'Georgia', serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Fraunces', 'Georgia', serif;
+  }
+
+  .font-letter {
+    font-family: 'Crimson Pro', 'Georgia', serif;
+  }
+
+  /* Linen / aged paper texture */
+  .bg-linen {
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  }
+
+  /* Vintage card tilts */
+  .vintage-card-tilt-left {
+    transform: rotate(-1.2deg);
+  }
+  .vintage-card-tilt-right {
+    transform: rotate(1.0deg);
+  }
+
+  /* Aged border style */
+  .aged-border {
+    border: 1px solid oklch(0.78 0.030 62 / 0.7);
+    box-shadow: inset 0 0 0 1px oklch(0.95 0.010 72 / 0.3);
+  }
+
+  /* Sepia stripe gradient */
+  .sepia-stripe {
+    background: linear-gradient(
+      to right,
+      oklch(0.50 0.10 28),
+      oklch(0.62 0.08 45),
+      oklch(0.72 0.065 148),
+      oklch(0.62 0.08 45),
+      oklch(0.50 0.10 28)
+    );
+  }
+
+  /* Noise texture overlay */
+  .bg-noise {
+    background-image:
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Paper lines for textarea */
+  .paper-lines {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(1.75rem - 1px),
+      oklch(0.80 0.030 65 / 0.5) calc(1.75rem - 1px),
+      oklch(0.80 0.030 65 / 0.5) 1.75rem
+    );
+    background-position: 0 calc(1.75rem * 2);
+  }
+
+  /* Decorative floral divider */
+  .floral-divider::before {
+    content: '— ✿ — ❀ — ✿ —';
+    display: block;
+    text-align: center;
+    color: oklch(0.62 0.07 28);
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    margin: 0.75rem 0;
+    opacity: 0.75;
+  }
+
+  /* Wax seal */
+  .wax-seal {
+    background: radial-gradient(circle at 35% 35%, oklch(0.60 0.14 25), oklch(0.38 0.12 22));
+    box-shadow:
+      inset -2px -2px 5px rgba(0,0,0,0.20),
+      inset 1px 1px 3px rgba(255,255,255,0.12),
+      0 3px 12px rgba(60,20,10,0.25);
+  }
+
+  /* Vintage torn/aged bottom edge on cards */
+  .aged-bottom-edge {
+    position: relative;
+  }
+  .aged-bottom-edge::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      oklch(0.78 0.030 60 / 0.18)
+    );
+    pointer-events: none;
+  }
+
+  /* Drop cap first letter */
+  .drop-cap:first-letter {
+    font-family: 'Fraunces', 'Georgia', serif;
+    font-size: 3.5em;
+    font-weight: 600;
+    float: left;
+    line-height: 0.78;
+    padding-right: 0.1em;
+    padding-top: 0.08em;
+    color: oklch(0.50 0.10 28);
+  }
+
+  /* Ornamental corner decorations */
+  .ornate-corner {
+    position: relative;
+  }
+  .ornate-corner::before {
+    content: '✿';
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.75rem;
+    color: oklch(0.62 0.07 28 / 0.5);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .ornate-corner::after {
+    content: '✦';
+    position: absolute;
+    bottom: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.75rem;
+    color: oklch(0.62 0.07 28 / 0.5);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* Stamp/postmark effect for dates */
+  .vintage-stamp {
+    display: inline-block;
+    border: 1.5px solid oklch(0.65 0.07 28 / 0.55);
+    border-radius: 3px;
+    padding: 0.1em 0.5em;
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: oklch(0.50 0.08 28 / 0.75);
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+}
